@@ -280,7 +280,7 @@
                                     <textarea class="form-control border-0" rows="5" placeholder="Describe your Query" id="query"></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-primary w-100 py-3" onclick="submitHandler()" id="send" >Send</button>
+                                    <button class="btn btn-primary w-100 py-3" onclick="submitHandler(event)" id="send" >Send</button>
                                 </div>
                             </div>
                         </form>
@@ -349,19 +349,14 @@
 
      <script>
         // const submit = document.getElementById(send);
+       
+        function submitHandler (e){
+            e.preventDefault();
         const from_name = document.getElementById('name').value;
         const Email =document.getElementById('email').value;
         const number = document.getElementById('pnumber').value;
         const message =document.getElementById('query').value;
-        function submitHandler (e){
-             
-            $(this).parent().attr({class: "inactiveTab"});
-            $(".inactiveTab").show();
-            e = e || window.event;
-            e.cancelBubble = true;
-            if (e.stopPropagation) e.stopPropagation();
-            e.preventDefault();
-            console.log("Hello World")
+            console.log(from_name);
             var templateParams = {
                 from_name,
                 Email,
