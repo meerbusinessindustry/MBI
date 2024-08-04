@@ -268,33 +268,19 @@
                         <form>
                             <div class="row g-3">
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control border-0" placeholder="Your Name" style="height: 55px;">
+                                    <input type="text" class="form-control border-0" placeholder="Your Name" id="name" style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="email" class="form-control border-0" placeholder="Your Email" style="height: 55px;">
+                                    <input type="email" class="form-control border-0" placeholder="Your Email" id="email" style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control border-0" placeholder="Your Mobile" style="height: 55px;">
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <div class="date" id="date" data-target-input="nearest">
-                                        <input type="text"
-                                            class="form-control border-0 datetimepicker-input"
-                                            placeholder="Choose Date" data-target="#date" data-toggle="datetimepicker" style="height: 55px;">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-6">
-                                    <div class="time" id="time" data-target-input="nearest">
-                                        <input type="text"
-                                            class="form-control border-0 datetimepicker-input"
-                                            placeholder="Choose Date" data-target="#time" data-toggle="datetimepicker" style="height: 55px;">
-                                    </div>
+                                    <input type="text" class="form-control border-0" placeholder="Your Mobile" id="pnumber" style="height: 55px;">
                                 </div>
                                 <div class="col-12">
-                                    <textarea class="form-control border-0" rows="5" placeholder="Describe your problem"></textarea>
+                                    <textarea class="form-control border-0" rows="5" placeholder="Describe your Query" id="query"></textarea>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-primary w-100 py-3" type="submit">Send</button>
+                                    <button class="btn btn-primary w-100 py-3" onclick="submitHandler()" id="send" >Send</button>
                                 </div>
                             </div>
                         </form>
@@ -349,6 +335,53 @@
 
 
     <!-- JavaScript Libraries -->
+    <script src="{PATH}/alertify.min.js"></script>
+    <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+</script>
+<script type="text/javascript">
+(function(){
+  emailjs.init({
+    publicKey: "aXoxoX4w8ySAKVAAZ",
+  });
+})();
+</script>
+
+     <script>
+        // const submit = document.getElementById(send);
+        const from_name = document.getElementById(name);
+        const Email =document.getElementById(email);
+        const number = document.getElementById(pnumber);
+        const message =document.getElementById(query);
+        // submit.addEventListener("click", submitHandler, false);
+        function submitHandler (e){
+             
+            $(this).parent().attr({class: "inactiveTab"});
+            $(".inactiveTab").show();
+            e = e || window.event;
+            e.cancelBubble = true;
+            if (e.stopPropagation) e.stopPropagation();
+            e.preventDefault();
+            console.log("Hello World")
+            var templateParams = {
+                from_name,
+                Email,
+                number,
+                message
+            };
+            emailjs.send('service_zffk13e', 'template_56aesq3', templateParams).then(
+            (response) => {
+                console.log('SUCCESS!', response.status, response.text);
+                alert('SUCCESSFULLY MESSAGE SENDED', response.status, response.text);
+            },
+            (error) => {
+                console.log('FAILED...', error);
+                alert('FAILED...', error);
+            },
+);
+
+        }
+    </script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/wow/wow.min.js"></script>
