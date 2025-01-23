@@ -1,0 +1,2 @@
+# Meer Business Industry
+MBI is also one of the known leaders in manufacturing in Sialkot. We understand the value of high-quality products; therefore, our true craftsmen are determined to equip premium dental instruments that are safe to use and verified to be more practical for dentists. Our instruments are dentist's hand extensions.
